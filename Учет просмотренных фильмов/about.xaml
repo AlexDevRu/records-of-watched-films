@@ -1,0 +1,21 @@
+﻿<Window x:Class="Учет_просмотренных_фильмов.about"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Учет_просмотренных_фильмов"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="О программе" Height="300" Width="400" Background="#C0C0C0" WindowStyle="None" Style="{StaticResource WindowStyle}">
+    <Grid>
+        <Image Margin="10,10,9.6,11" Source="resources/about.jpg"/>
+        <TextBlock Text="Название" Width="auto" Height="auto" Margin="20,20,293.6,222" FontSize="16" FontWeight="Bold"></TextBlock>
+        <TextBlock Text="Программа формирования личного рейтинга фильмов" Width="auto" Margin="20,42,267.6,156" TextWrapping="Wrap"/>
+        <TextBlock Text="Автор" Width="auto" Margin="20,118,305.6,126" FontSize="16" FontWeight="Bold"/>
+        <TextBlock Text="Кулаков Александр" Width="auto" Margin="20,138,259.6,106"/>
+        <TextBlock Text="Дата" Width="auto" Height="auto" Margin="142,20,171.6,222" FontSize="16" FontWeight="Bold"></TextBlock>
+        <TextBlock Text="07.11.2019" Width="auto" Margin="142,42,171.6,202"/>
+        <TextBlock Text="Группа" Width="auto" Margin="142,118,185.6,126" FontSize="16" FontWeight="Bold"/>
+        <TextBlock Text="28ТП" Width="auto" Margin="142,138,185.6,106"/>
+    </Grid>
+</Window>

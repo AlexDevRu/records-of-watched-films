@@ -1,0 +1,371 @@
+﻿<ResourceDictionary x:Class="Учет_просмотренных_фильмов.WindowStyle"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Учет_просмотренных_фильмов">
+
+
+    <Style x:Key="ScrollBarLineButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Canvas Height="12" Width="18">
+                        <Polyline Stroke="Blue" Points="3.5,9 8,4.5 12.5,9"></Polyline>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarLineButtonBottomStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Canvas Height="12" Width="18">
+                        <Polyline Stroke="Blue" Points="4.5,3 9,7.5 13.5,3"></Polyline>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarPageButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border BorderBrush="Transparent"></Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Margin" Value="1,0,1,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="border" BorderThickness="0" Background="Blue" BorderBrush="Black" CornerRadius="5" Margin="2">
+                        
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!--<Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.6"/>
+                        </Trigger>-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush
+                                    GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                                    RadiusX="1" RadiusY="0.65">
+                                        <GradientStop Color="Blue" Offset="0.4"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="18"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition MaxHeight="18"/>
+            </Grid.RowDefinitions>
+
+            <RepeatButton Grid.Row="0" Height="18"
+                          Style="{StaticResource ScrollBarLineButtonStyle}"
+                          Command="ScrollBar.LineUpCommand" >
+            </RepeatButton>
+            <Track Name="PART_Track" Grid.Row="1" 
+                   IsDirectionReversed="True">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                    </RepeatButton>
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource ScrollBarThumbStyle}">
+                    </Thumb>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageDownCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                    </RepeatButton>
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <RepeatButton Grid.Row="3" Height="18"
+                          Style="{StaticResource ScrollBarLineButtonBottomStyle}"
+                          Command="ScrollBar.LineDownCommand">
+            </RepeatButton>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
+    </Style>
+
+    <ControlTemplate TargetType="Button" x:Key="add">
+        <Grid>
+            <Polygon Height="27" Width="27" x:Name="polygon" Points="0,9 9,9 9,0 18,0 18,9 27,9 27,18 27,9 27,18 18,18 18,27 9,27 9,18 0,18">
+                <Polygon.Fill>
+                    <RadialGradientBrush
+                                    GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                                    RadiusX="0.7" RadiusY="0.55">
+                        <GradientStop Color="Green" Offset="0.4"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </RadialGradientBrush>
+                </Polygon.Fill>
+            </Polygon>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="polygon" Property="Opacity" Value="0.6"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill" TargetName="polygon">
+                    <Setter.Value>
+                        <RadialGradientBrush
+                                    GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                                    RadiusX="0.8" RadiusY="0.85">
+                            <GradientStop Color="Green" Offset="0.2"/>
+                            <GradientStop Color="LightGreen" Offset="0.8"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="10" BorderThickness="1" BorderBrush="Blue">
+                            <Border.Background>
+                                <RadialGradientBrush
+                                    GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                                    RadiusX="1" RadiusY="0.65">
+                                    <GradientStop Color="Blue" Offset="0.5"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+                    
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush
+                                    GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                                    RadiusX="0.8" RadiusY="0.85">
+                                        <GradientStop Color="Blue" Offset="0.2"/>
+                                        <GradientStop Color="LightBlue" Offset="0.8"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="close_button" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Red"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid">
+                        <Border x:Name="border" CornerRadius="10" BorderThickness="1" BorderBrush="Red">
+                            <Border.Background>
+                                <RadialGradientBrush
+                                    GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                                    RadiusX="1" RadiusY="0.65">
+                                    <GradientStop Color="Red" Offset="0.5"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </RadialGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <RadialGradientBrush
+                                    GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                                    RadiusX="0.8" RadiusY="0.85">
+                                        <GradientStop Color="Red" Offset="0.2"/>
+                                        <GradientStop Color="Pink" Offset="0.8"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="30"
+                         CornerRadius="34"
+                         GlassFrameThickness="0"
+                         NonClientFrameEdges="None"
+                         ResizeBorderThickness="0"
+                         UseAeroCaptionButtons="False"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <!--<Setter Property="Background" Value="{Templ}"/>-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border Background="{TemplateBinding Background}"
+                          BorderThickness="0" BorderBrush="Black">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+
+
+                            <DockPanel Height="30"
+                             VerticalAlignment="Top"
+                             LastChildFill="False" Background="#C7C0D6" Grid.Row="0">
+
+                                <Button x:Name="btnClose"
+                              Margin="10,0,0,0"
+                              Click="CloseClick"
+                              DockPanel.Dock="Left"
+                              VerticalAlignment="Center"
+                              WindowChrome.IsHitTestVisibleInChrome="True">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <Border CornerRadius="7" Width="14" Height="14" Name="border">
+                                                    <Border.Background>
+                                                        <RadialGradientBrush GradientOrigin="0.75,0.25">
+                                                            <GradientStop Color="White" Offset="0"></GradientStop>
+                                                            <GradientStop Color="Red" Offset="1"></GradientStop>
+                                                        </RadialGradientBrush>
+                                                    </Border.Background>
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                                </Border>
+                                            </Grid>
+
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" TargetName="border">
+                                                        <Setter.Value>
+                                                            <RadialGradientBrush GradientOrigin="0.75,0.25">
+                                                                <GradientStop Color="White" Offset="0"></GradientStop>
+                                                                <GradientStop Color="#FF7C7C" Offset="1"></GradientStop>
+                                                            </RadialGradientBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+
+
+                                <Button x:Name="btnMinimize"
+                              Margin="7"
+                              VerticalAlignment="Center"
+                              Click="MinimizeClick"
+                              DockPanel.Dock="Left"
+                              WindowChrome.IsHitTestVisibleInChrome="True">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <Border CornerRadius="7" Width="14" Height="14" Name="border">
+                                                    <Border.Background>
+                                                        <RadialGradientBrush GradientOrigin="0.75,0.25">
+                                                            <GradientStop Color="White" Offset="0"></GradientStop>
+                                                            <GradientStop Color="Green" Offset="1"></GradientStop>
+                                                        </RadialGradientBrush>
+                                                    </Border.Background>
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                                </Border>
+                                            </Grid>
+
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" TargetName="border">
+                                                        <Setter.Value>
+                                                            <RadialGradientBrush GradientOrigin="0.75,0.25">
+                                                                <GradientStop Color="White" Offset="0"></GradientStop>
+                                                                <GradientStop Color="#77F477" Offset="1"></GradientStop>
+                                                            </RadialGradientBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+
+                                <TextBlock Margin="-43,3,0,0"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 DockPanel.Dock="Top"
+                                 FontSize="16"
+                                 Foreground="Black"
+                                 Text="{TemplateBinding Title}" />
+                            </DockPanel>
+                            <AdornerDecorator Grid.Row="1">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              Content="{TemplateBinding Content}"/>
+                            </AdornerDecorator>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

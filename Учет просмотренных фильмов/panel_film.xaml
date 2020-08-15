@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Учет_просмотренных_фильмов.panel_film"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Учет_просмотренных_фильмов"
+             mc:Ignorable="d" 
+             d:DesignHeight="135" d:DesignWidth="238" x:Name="usr">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Border}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Blue"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="default" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="#33000000"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=border}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=border}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="close" TargetType="{x:Type Button}" BasedOn="{StaticResource close_button}">
+            <Setter Property="Background" Value="#33000000"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=border}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=border}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Border BorderThickness="1" CornerRadius="5" x:Name="border" Margin="1">
+        <Grid Margin="5" x:Name="grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="{Binding Poster,ElementName=usr}" Height="120"/>
+            <StackPanel Orientation="Vertical" Grid.Column="1">
+                <TextBlock x:Name="name" HorizontalAlignment="Left" Width="119" Text="{Binding NameFilm,ElementName=usr}" FontSize="14" FontWeight="Bold" Margin="5,0,0,0" TextWrapping="Wrap"></TextBlock>
+                <TextBlock Text="{Binding Year,ElementName=usr}" Margin="5,0,0,5" FontStyle="Italic"></TextBlock>
+                <StackPanel x:Name="ozenka" Orientation="Horizontal" Margin="5,0,0,5"></StackPanel>
+                <TextBlock HorizontalAlignment="Left" Width="119" Text="{Binding Genres,ElementName=usr}" Margin="5,0,0,0" TextWrapping="Wrap"></TextBlock>
+                <TextBlock x:Name="views" HorizontalAlignment="Left" Margin="5,0,0,0"></TextBlock>
+            </StackPanel>
+            <Button Style="{StaticResource close}" x:Name="close" Content="x" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+            <Button Style="{StaticResource default}" x:Name="stat" Content="Статистика" Width="75" Height="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2"></Button>
+            <Button Style="{StaticResource default}" x:Name="edit" Content="Изменить" Width="75" Height="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,22"></Button>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="Учет_просмотренных_фильмов.stat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Учет_просмотренных_фильмов"
+        xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Статистика" Height="308.4" Width="423.2" Background="#C7C0D6" WindowStyle="None" Style="{StaticResource WindowStyle}" Loaded="Window_Loaded">
+    <Grid>
+        <TabControl Margin="10,10,11.8,10">
+            <TabItem Header="по рейтингу">
+                <WindowsFormsHost>
+                    <WindowsFormsHost.Child>
+                        <dvc:Chart x:Name="rating"></dvc:Chart>
+                    </WindowsFormsHost.Child>
+                </WindowsFormsHost>
+            </TabItem>
+            <TabItem Header="по жанру">
+                <WindowsFormsHost>
+                    <WindowsFormsHost.Child>
+                        <dvc:Chart x:Name="janr"></dvc:Chart>
+                    </WindowsFormsHost.Child>
+                </WindowsFormsHost>
+            </TabItem>
+            <TabItem Header="по году">
+                <WindowsFormsHost>
+                    <WindowsFormsHost.Child>
+                        <dvc:Chart x:Name="year"></dvc:Chart>
+                    </WindowsFormsHost.Child>
+                </WindowsFormsHost>
+            </TabItem>
+            <TabItem Header="по количеству просмотров">
+                <WindowsFormsHost>
+                    <WindowsFormsHost.Child>
+                        <dvc:Chart x:Name="views"></dvc:Chart>
+                    </WindowsFormsHost.Child>
+                </WindowsFormsHost>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
